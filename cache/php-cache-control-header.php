@@ -13,11 +13,7 @@ header("Last-Modified: ".gmdate("D, d M Y H:i:s", $lastModified)." GMT");
 //set etag-header
 header("Etag: $etagFile");
 //make sure caching is turned on
-header('Cache-Control: public');
-
-session_cache_limiter(‘public’); //This stop php’s default no-cache
-
-session_cache_expire(5); // Optional expiry time in minutes
+header('Cache-Control: public, max-age=691200');
 
 //check if page has changed. If not, send 304 and exit
 if (@strtotime($ifModifiedSince)==$lastModified || $etagHeader == $etagFile)
